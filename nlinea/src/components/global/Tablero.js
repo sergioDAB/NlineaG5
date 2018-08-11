@@ -33,7 +33,7 @@ class Tablero extends Component {
     render(){
         return(
             <div id="connect4" className="container-fluid">
-                <table>
+                <table className="tableroTable">
                     <tbody>
                     {this.renderRows()}
                     </tbody>

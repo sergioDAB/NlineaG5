@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fe0505a-7ae9-4757-a593-214096e383df" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/nlinea/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/images/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/Tablero.js" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/Tablero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,8 +41,8 @@
       <file leaf-file-name="Tablero.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Tablero.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+            <state relative-caret-position="195">
+              <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -64,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hacerCasillas.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hacerCasillas.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/utils/hacerCasillas.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
@@ -97,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tablero.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tablero.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="1159" column="13" lean-forward="true" selection-start-line="1159" selection-start-column="13" selection-end-line="1159" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -130,9 +125,9 @@
         <option value="$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css" />
         <option value="$PROJECT_DIR$/nlinea/src/components/App.js" />
         <option value="$PROJECT_DIR$/nlinea/src/components/global/utils/hacerCasillas.js" />
+        <option value="$PROJECT_DIR$/nlinea/src/components/global/Ficha.js" />
         <option value="$PROJECT_DIR$/nlinea/src/components/global/Tablero.js" />
         <option value="$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css" />
-        <option value="$PROJECT_DIR$/nlinea/src/components/global/Ficha.js" />
       </list>
     </option>
   </component>
@@ -282,15 +277,16 @@
       <workItem from="1533793615501" duration="2485000" />
       <workItem from="1533842273376" duration="24133000" />
       <workItem from="1533924730259" duration="2421000" />
-      <workItem from="1534006548577" duration="12179000" />
+      <workItem from="1534006548577" duration="12808000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41218000" />
+    <option name="totallyTimeSpent" value="41847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -523,13 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="1159" column="13" lean-forward="true" selection-start-line="1159" selection-start-column="13" selection-end-line="1159" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/images/circle-dark-winner.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -543,16 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Tablero.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/utils/hacerCasillas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -560,6 +539,23 @@
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Tablero.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
