@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from './global/images/logo.svg';
+import '../App.css';
+import Tablero from "./global/Tablero";
+
+import HacerCasillas from './global/utils/hacerCasillas';
+
 
 class App extends Component {
-  render() {
+    render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Bienvenido a N en linea</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Datos de la persona
         </p>
+
+          <Tablero/>
       </div>
     );
   }
