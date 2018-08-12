@@ -5,10 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nlinea/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/Ficha.js" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/Ficha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/Tablero.js" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/Tablero.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/images/Thumbs.db" beforeDir="false" afterPath="$PROJECT_DIR$/nlinea/src/components/global/images/Thumbs.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nlinea/src/components/global/utils/hacerCasillas.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +21,8 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="136">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -37,7 +33,7 @@
       <file leaf-file-name="Tablero.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Tablero.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="93">
               <caret line="16" column="118" selection-start-line="16" selection-start-column="118" selection-end-line="16" selection-end-column="118" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -55,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ficha.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Ficha.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Ficha.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
+            <state relative-caret-position="144">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -67,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ficha.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ficha.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="170">
+              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -108,10 +104,11 @@
         <option value="$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css" />
         <option value="$PROJECT_DIR$/nlinea/public/index.html" />
         <option value="$PROJECT_DIR$/nlinea/src/components/global/utils/hacerCasillas.js" />
-        <option value="$PROJECT_DIR$/nlinea/src/components/App.js" />
         <option value="$PROJECT_DIR$/nlinea/src/components/global/Tablero.js" />
-        <option value="$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css" />
+        <option value="$PROJECT_DIR$/nlinea/src/components/global/eje.js" />
+        <option value="$PROJECT_DIR$/nlinea/src/components/App.js" />
         <option value="$PROJECT_DIR$/nlinea/src/components/global/Ficha.js" />
+        <option value="$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css" />
       </list>
     </option>
   </component>
@@ -252,25 +249,25 @@
       <workItem from="1533793615501" duration="2485000" />
       <workItem from="1533842273376" duration="24133000" />
       <workItem from="1533924730259" duration="2421000" />
-      <workItem from="1534006548577" duration="26574000" />
+      <workItem from="1534006548577" duration="31324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55613000" />
+    <option name="totallyTimeSpent" value="60363000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.30804953" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.30804953" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -480,16 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nlinea/src/components/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/css/tablero.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
@@ -499,8 +486,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Tablero.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="93">
           <caret line="16" column="118" selection-start-line="16" selection-start-column="118" selection-end-line="16" selection-end-column="118" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/eje.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nlinea/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Ficha.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -509,18 +530,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/css/ficha.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nlinea/src/components/global/Ficha.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="27" />
         </state>
       </provider>
     </entry>

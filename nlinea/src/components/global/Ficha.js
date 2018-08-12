@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 
 import './css/ficha.css';
 
+
 class Ficha extends Component {
 
     constructor(){
         super();
+        this.button = React.createRef();
+        this.changeColor = this.changeColor.bind( this );
         this.onClick = this.onClick.bind(this);
         this.state={
             img: "ficha"
@@ -13,9 +16,13 @@ class Ficha extends Component {
 
     }
 
+    changeColor() {
+        this.button.current.style.backgroundColor = 'red'
+    }
+
     onClick(){
         console.log(`${this.props.fila}-${this.props.columna}`);
-        console.log(this.state.img);
+        this.changeColor();
         if(this.state.img==="ficha"){
             this.state.img="press";
 
@@ -28,7 +35,7 @@ class Ficha extends Component {
 
     render() {
         return (
-            <div className={this.state.img} onClick = {this.onClick} >
+            <div ref= {this.button } className={this.state.img} onClick = {this.onClick}>
             </div>
         );
     }
