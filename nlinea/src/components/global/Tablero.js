@@ -14,7 +14,7 @@ class Tablero extends Component {
 
     renderCell(fila, columna){
         return(
-            <Ficha fila = {fila} columna = {columna} cardImg = {fichaLocal} key = {`ficha_${fila}_${columna}`}/>
+            <Ficha fila = {fila} columna = {columna} cardImg = {fichaLocal} key = {fila.toString()+columna.toString()}/>
         )
     }
 

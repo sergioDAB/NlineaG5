@@ -3,7 +3,6 @@ import logo from './global/images/logo.svg';
 import '../App.css';
 import Tablero from "./global/Tablero";
 
-import HacerCasillas from './global/utils/hacerCasillas';
 
 
 class App extends Component {

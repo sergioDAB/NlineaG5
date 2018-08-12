@@ -1,10 +1,17 @@
 .ficha{
     width: 100px;
     height: 100px;
-    border-style: dotted;
     background-color: brown;
-
     background-image: url("../images/circle-dark.svg");
 }
+
+.press{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    background-image: url("../images/circle-dark.svg");
+}
+
+
 
 
