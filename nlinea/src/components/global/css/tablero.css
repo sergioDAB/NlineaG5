@@ -1,6 +1,3 @@
-.tabero{
-    background-color: aqua;
-}
 
 tr{
     float: right;
@@ -10,8 +7,6 @@ tr{
 div.centerTable{
     text-align: center;
 }
-
-
 
 div.centerTable table {
     margin: 0 auto;

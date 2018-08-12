@@ -17,7 +17,7 @@ class Ficha extends Component {
     }
 
     changeColor() {
-        this.button.current.style.backgroundColor = 'red'
+        this.button.current.style.backgroundColor = "green";
     }
 
     onClick(){
