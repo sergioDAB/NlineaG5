@@ -1,18 +1,10 @@
 .ficha{
     width: 100px;
     height: 100px;
-    background-color: darkslategrey;
-    border-style: solid;
-    border-color: grey;
-    border-radius:50px;
+    background-color: grey;
+    border-radius:100px;
 }
 
-.press{
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    background-image: url("../images/circle-dark.svg");
-}
 
 
 

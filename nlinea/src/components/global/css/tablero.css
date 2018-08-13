@@ -6,9 +6,12 @@ tr{
 
 div.centerTable{
     text-align: center;
+
 }
 
 div.centerTable table {
     margin: 0 auto;
     text-align: left;
+    border-style: solid;
+    border-color: black;
 }

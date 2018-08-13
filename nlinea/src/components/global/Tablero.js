@@ -4,13 +4,14 @@ import Ficha from './Ficha';
 import fichaLocal from './images/circle-dark.svg';
 import './css/tablero.css';
 
-const FILAS =5;
+const FILAS =3;
 
 class Tablero extends Component {
     constructor(){
         super();
         this.renderCell = this.renderCell.bind(this);
     }
+
 
     renderCell(fila, columna){
         return(
@@ -30,14 +31,17 @@ class Tablero extends Component {
         return rows;
     }
 
+
     render(){
         return(
-            <div id="connect4" className="centerTable">
+            <div className="centerTable">
                 <table className="tableroTable">
                     <tbody>
                     {this.renderRows()}
                     </tbody>
                 </table>
+
+
             </div>
         )
     }
