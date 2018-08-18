@@ -1,0 +1,32 @@
+
+tr{
+    float: right;
+}
+
+.centerTable{
+    margin-top: 20px;
+}
+
+div.centerTable{
+    text-align: center;
+
+}
+
+div.centerTable table {
+    margin: 0 auto;
+    text-align: left;
+    border-style: solid;
+    border-color: black;
+}
+
+.player1{
+    float: left;
+    margin-left: 30px;
+}
+
+button{
+    background-color: black;
+    color: white;
+    font-size: medium;
+    font-family: Tahoma;
+}

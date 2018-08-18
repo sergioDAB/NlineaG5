@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+import './components/css/index.css';
 
 import 'font-awesome/css/font-awesome.css';
-import App from './components/App';
+import App from './components/scripts/App';
 
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './components/scripts/registerServiceWorker';
 
 ReactDOM.render(
     <BrowserRouter>
