@@ -17,14 +17,18 @@ let default_state = {
     },
     view: 'main',
     fila: 0,
-    columna:0
+    columna:0,
+    colorActual: "orange"
 };
 
 const selector = (state, action) => {
     if(action.type === "CAMBIAR_TURNO"){
         return{
             ...state,
-            turno: state.turno === 0 ? 1 : 0
+            turno: state.turno === 0 ? 1 : 0,
+            fila: action.fila,
+            columna:action.columna,
+            colorActual:action.colorActual
         }
     }
     else if(action.type === "CONFIGURAR"){

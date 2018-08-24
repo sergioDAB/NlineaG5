@@ -5,18 +5,15 @@ import store from "./store.js";
 import '../css/ficha.css';
 
 
-
 class Ficha extends Component {
 
     constructor(){
         super();
         this.button = React.createRef();
-        this.pintar = this.pintar.bind( this );
         this.onClick = this.onClick.bind(this);
         this.state={
-            img:"ficha",
             color: store.getState().userData1.color,
-            t: 0,
+            tamano: store.getState().size,
             userData1: {
                 nickname: store.getState().userData1.nickname,
                 level: store.getState().userData1.level,
@@ -26,7 +23,9 @@ class Ficha extends Component {
                 nickname: store.getState().userData2.nickname,
                 level: store.getState().userData2.level,
                 color: store.getState().userData2.color
-            }
+            },
+            fila: store.getState().fila,
+            columna:store.getState().columna
         };
 
         store.subscribe(()=>{
@@ -42,39 +41,66 @@ class Ficha extends Component {
                     nickname: store.getState().userData2.nickname,
                     level: store.getState().userData2.level,
                     color: store.getState().userData2.color
-                }
-            })
+                },
+                fila: store.getState().fila,
+                columna:store.getState().columna
+            });
         })
 
     }
 
-    pintar(){
-        store.dispatch({type: "CAMBIAR_TURNO"});
-        console.log(store.getState().turno);
+    calcularTamFicha(){
+        let t=510/this.state.tamano;
+        return t;
+    }
 
-        //se necesita pintar la ficha que se desee por coordenada aunque no sea a la que se le da click
+    moverFichaAPI(fila,columna,turno){
+        console.log("fila: "+ fila + "  columna:"+columna);
+        let url = 'http://localhost:3001/game';
+        let data = {"fila": fila, "columna":columna, "turno":turno};
 
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            cors: 'disabled',
+            credentials: 'same-origin',
+            headers:{'Content-Type': 'application/json'}
 
-        this.button.current.style.backgroundColor = this.state.color;
-
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response =>store.dispatch({ // cambia el store
+                type: "CAMBIAR_TURNO",
+                fila: response.columna,
+                columna: response.fila,
+                turno: response.turno,
+                colorActual:this.state.color // color que varia segun sea el turno
+            }) ).then(res => console.log(res))
     }
 
     onClick(){
-        console.log(`${this.props.fila}-${this.props.columna}`);
-        this.pintar(this.props.fila, this.props.columna);
-        console.log("fichas"+ store.getState().size);
+        this.moverFichaAPI(this.props.fila,this.props.columna,store.getState().turno);
+
     }
 
 
 
     render() {
-
+        console.log("renderiza f");
         return (
-            <div ref= {this.button } className={this.state.img}  onClick = {this.onClick}>
+            <div
+                ref= {this.button }
+                className="ficha"
+                onClick = {this.onClick}
+                style={{
+                    backgroundColor: `${this.props.color}`,
+                    height: this.calcularTamFicha(),
+                    width:this.calcularTamFicha()
+                }}>
             </div>
         );
     }
 }
+
 
 export default Ficha;
 

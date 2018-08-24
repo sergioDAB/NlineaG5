@@ -9,8 +9,8 @@ import store from "./store";
 class Tablero extends Component {
     constructor(props){
         super(props);
-        this.state={
-            FILAS: 2,
+        this.state= {
+            size: 2,
             userData1: {
                 nickname1: "player1",
                 level1: 1,
@@ -22,8 +22,13 @@ class Tablero extends Component {
                 color2: "red"
             },
             linea: 4,
-            view: 'parametros'
-        };
+            view: 'parametros',
+            fila: 3,
+            columna: 3,
+            colorActual: "orange",
+            pintadas:[]
+        }
+        ;
         this.nick1 = React.createRef();
         this.categoria1 = React.createRef();
         this.color1=React.createRef();
@@ -39,7 +44,8 @@ class Tablero extends Component {
 
         store.subscribe(()=>{
             this.setState({
-                FILAS: store.getState().size,
+                size: store.getState().size,
+                linea: store.getState().nlinea,
                 userData1: {
                     nickname1: store.getState().userData1.nickname,
                     level1: store.getState().userData1.level,
@@ -50,16 +56,36 @@ class Tablero extends Component {
                     level2: store.getState().userData2.level,
                     color2: store.getState().userData2.color
                 },
+                fila: store.getState().fila,
+                columna:store.getState().columna,
+                colorActual:store.getState().colorActual,
 
-            })
+            });
+
         })
     }
 
 
-    renderCell(fila, columna){
+    renderCell(fila, columna){ // ficha vacia
         return(
             <Ficha fila = {fila} columna = {columna}  key = {fila.toString()+columna.toString()}/>
         )
+    }
+
+    putFicha(fila, columna){
+        return(
+            <Ficha fila = {fila} columna = {columna}  key = {fila.toString()+columna.toString() } color= {this.state.colorActual}/>
+        )
+    }
+
+    member(ficha){
+        let len= this.state.pintadas.length;
+        for(let i=0; i<len;i++){
+            if(this.state.pintadas[i]===ficha){
+                return true;
+            }
+        }
+        return false;
     }
 
     renderRows(filas){
@@ -67,7 +93,13 @@ class Tablero extends Component {
         for(let i = 0; i < filas; i++){
             let columns = [];
             for(let j = 0; j < filas; j++){
-                columns.push(this.renderCell(i, j));
+
+                if(this.state.fila=== i && this.state.columna===j){
+                    columns.push(this.putFicha(j,i))
+                }else{
+                    columns.push(this.renderCell(j,i));
+                }
+
             }
             rows.push(<tr>{columns}</tr>);
         }
@@ -115,8 +147,25 @@ class Tablero extends Component {
         );
     }
 
-    maketablero() {
+    maketableroAPI(size,nlinea){
+        let url = 'http://localhost:3001/config';
+        let data = {"size": size, "nlinea": nlinea};
 
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            cors: 'disabled',
+            credentials: 'same-origin',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
+    }
+
+    maketablero() {
+        this.maketableroAPI(this.filas.current.value,this.linea.current.value); // crea el tablero en el api
         store.dispatch({
             type: "CONFIGURAR",
             size: this.filas.current.value,
@@ -144,7 +193,7 @@ class Tablero extends Component {
         return(
             <table className="tableroTable">
                 <tbody>
-                {this.renderRows(this.state.FILAS)}
+                {this.renderRows(this.state.size)}
                 </tbody>
             </table>
         )
@@ -161,6 +210,7 @@ class Tablero extends Component {
 
 
     render(){
+        console.log("se reendiza");
         return(
             <div className="centerTable">
                 {this.renderComponent()}

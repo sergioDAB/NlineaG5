@@ -8,7 +8,24 @@ import '../css/App.css';
 
 
 class App extends Component {
+
+
     render() {
+        /*let url = 'http://localhost:3001/config';
+        let data = {"size": 3, "nlinea": 3};
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            cors: 'disabled',
+            credentials: 'same-origin',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));*/
+
         return <div className="App">
 
             <header className="App-header">
