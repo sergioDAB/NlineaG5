@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import Ficha from './Ficha';
 
 import '../css/tablero.css';
-import store from "./store";
-
+import store from "./store.js";
 
 
 class Tablero extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state= {
             size: 2,
             userData1: {
@@ -23,12 +22,8 @@ class Tablero extends Component {
             },
             linea: 4,
             view: 'parametros',
-            fila: 3,
-            columna: 3,
-            colorActual: "orange",
-            pintadas:[]
-        }
-        ;
+            tablero: ["hola"]
+        };
         this.nick1 = React.createRef();
         this.categoria1 = React.createRef();
         this.color1=React.createRef();
@@ -39,7 +34,6 @@ class Tablero extends Component {
         this.filas = React.createRef();
 
         this.maketablero = this.maketablero.bind(this);
-        this.renderCell = this.renderCell.bind(this);
         this.renderRows=this.renderRows.bind(this);
 
         store.subscribe(()=>{
@@ -56,50 +50,27 @@ class Tablero extends Component {
                     level2: store.getState().userData2.level,
                     color2: store.getState().userData2.color
                 },
-                fila: store.getState().fila,
-                columna:store.getState().columna,
-                colorActual:store.getState().colorActual,
-
+                tablero:store.getState().tablero
             });
-
         })
     }
 
-
-    renderCell(fila, columna){ // ficha vacia
+    putFicha(fila, columna,color){
         return(
-            <Ficha fila = {fila} columna = {columna}  key = {fila.toString()+columna.toString()}/>
+            <Ficha fila = {fila} columna = {columna}  key = {fila.toString()+columna.toString() } color= {color}/>
         )
     }
 
-    putFicha(fila, columna){
-        return(
-            <Ficha fila = {fila} columna = {columna}  key = {fila.toString()+columna.toString() } color= {this.state.colorActual}/>
-        )
-    }
 
-    member(ficha){
-        let len= this.state.pintadas.length;
-        for(let i=0; i<len;i++){
-            if(this.state.pintadas[i]===ficha){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    renderRows(filas){
+    renderRows(filas) {
+        console.log(this.state.tablero);
         let rows = [];
-        for(let i = 0; i < filas; i++){
+        for (let i = 0; i < filas; i++) {
             let columns = [];
-            for(let j = 0; j < filas; j++){
-
-                if(this.state.fila=== i && this.state.columna===j){
-                    columns.push(this.putFicha(j,i))
-                }else{
-                    columns.push(this.renderCell(j,i));
+            for (let j = 0; j < filas; j++) {
+                if (this.state.tablero[i][j].fila === i && this.state.tablero[i][j].columna === j) {
+                    columns.push(this.putFicha(j, i, this.state.tablero[j][i].color))
                 }
-
             }
             rows.push(<tr>{columns}</tr>);
         }
@@ -147,9 +118,10 @@ class Tablero extends Component {
         );
     }
 
-    maketableroAPI(size,nlinea){
+
+    maketableroAPI(size,nlinea,color1,color2){
         let url = 'http://localhost:3001/config';
-        let data = {"size": size, "nlinea": nlinea};
+        let data = {"size": size, "nlinea": nlinea, "color1":color1, "color2": color2};
 
         fetch(url, {
             method: 'POST',
@@ -161,11 +133,14 @@ class Tablero extends Component {
             }
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
-            .then(response => console.log('Success:', response));
+            .then(response => this.setState({
+                tablero:response.tablero,
+                view: 'tablero'
+            }))
     }
 
     maketablero() {
-        this.maketableroAPI(this.filas.current.value,this.linea.current.value); // crea el tablero en el api
+        this.maketableroAPI(this.filas.current.value,this.linea.current.value,this.color1.current.value,this.color2.current.value); // crea el tablero en el api
         store.dispatch({
             type: "CONFIGURAR",
             size: this.filas.current.value,
@@ -180,13 +155,7 @@ class Tablero extends Component {
                 level: this.categoria2.current.value,
                 color: this.color2.current.value
             }
-
         });
-
-        this.setState({
-            view: 'tablero'
-        });
-
     }
 
     renderTab(){
@@ -197,7 +166,6 @@ class Tablero extends Component {
                 </tbody>
             </table>
         )
-
     }
 
     renderComponent(){
@@ -210,7 +178,6 @@ class Tablero extends Component {
 
 
     render(){
-        console.log("se reendiza");
         return(
             <div className="centerTable">
                 {this.renderComponent()}
@@ -220,3 +187,4 @@ class Tablero extends Component {
 }
 
 export default Tablero;
+

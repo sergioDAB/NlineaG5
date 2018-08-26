@@ -13,6 +13,7 @@ class Ficha extends Component {
         this.onClick = this.onClick.bind(this);
         this.state={
             color: store.getState().userData1.color,
+            turno: store.getState().turno,
             tamano: store.getState().size,
             userData1: {
                 nickname: store.getState().userData1.nickname,
@@ -24,8 +25,7 @@ class Ficha extends Component {
                 level: store.getState().userData2.level,
                 color: store.getState().userData2.color
             },
-            fila: store.getState().fila,
-            columna:store.getState().columna
+            tablero:store.getState().tablero
         };
 
         store.subscribe(()=>{
@@ -42,8 +42,7 @@ class Ficha extends Component {
                     level: store.getState().userData2.level,
                     color: store.getState().userData2.color
                 },
-                fila: store.getState().fila,
-                columna:store.getState().columna
+                tablero: store.getState().tablero
             });
         })
 
@@ -55,7 +54,6 @@ class Ficha extends Component {
     }
 
     moverFichaAPI(fila,columna,turno){
-        console.log("fila: "+ fila + "  columna:"+columna);
         let url = 'http://localhost:3001/game';
         let data = {"fila": fila, "columna":columna, "turno":turno};
 
@@ -70,11 +68,10 @@ class Ficha extends Component {
             .catch(error => console.error('Error:', error))
             .then(response =>store.dispatch({ // cambia el store
                 type: "CAMBIAR_TURNO",
-                fila: response.columna,
-                columna: response.fila,
                 turno: response.turno,
-                colorActual:this.state.color // color que varia segun sea el turno
-            }) ).then(res => console.log(res))
+                tablero:response.tablero
+            }) )
+
     }
 
     onClick(){
@@ -83,9 +80,7 @@ class Ficha extends Component {
     }
 
 
-
     render() {
-        console.log("renderiza f");
         return (
             <div
                 ref= {this.button }
@@ -103,5 +98,3 @@ class Ficha extends Component {
 
 
 export default Ficha;
-
-//style={{backgroundColor: `${this.state.color}`}}

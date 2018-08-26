@@ -3,7 +3,7 @@ import '../css/params.css';
 
 let default_state = {
     size: 4,
-    turno: 0,
+    turno: -1,
     nline: 4,
     userData1: {
         nickname: "player1",
@@ -16,19 +16,15 @@ let default_state = {
         color: "red"
     },
     view: 'main',
-    fila: 0,
-    columna:0,
-    colorActual: "orange"
+    tablero:[]
 };
 
 const selector = (state, action) => {
     if(action.type === "CAMBIAR_TURNO"){
         return{
             ...state,
-            turno: state.turno === 0 ? 1 : 0,
-            fila: action.fila,
-            columna:action.columna,
-            colorActual:action.colorActual
+            turno: state.turno === 1 ? 0 : 1,
+            tablero:action.tablero
         }
     }
     else if(action.type === "CONFIGURAR"){
@@ -45,7 +41,8 @@ const selector = (state, action) => {
                 nickname: action.userData2.nickname,
                 level: action.userData2.level,
                 color: action.userData2.color
-            }
+            },
+            tablero:action.tablero
         }
     }
     else if(action.type ===  "MODIFICAR_PERFIL"){
