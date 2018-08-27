@@ -21,7 +21,7 @@ class Tablero extends Component {
                 color2: "red"
             },
             linea: 4,
-            view: 'parametros',
+            view: 'parametros', // parametros  tablero
             tablero: ["hola"]
         };
         this.nick1 = React.createRef();
@@ -50,7 +50,8 @@ class Tablero extends Component {
                     level2: store.getState().userData2.level,
                     color2: store.getState().userData2.color
                 },
-                tablero:store.getState().tablero
+                tablero:store.getState().tablero,
+                view: store.getState().view
             });
         })
     }
@@ -157,7 +158,7 @@ class Tablero extends Component {
             }
         });
     }
-
+// vista que muestra el tablero
     renderTab(){
         return(
             <table className="tableroTable">
@@ -168,10 +169,11 @@ class Tablero extends Component {
         )
     }
 
+// define cual componente renderizar
     renderComponent(){
         if(this.state.view==='parametros'){
             return(this.renderParams())
-        }else{
+        }else if(this.state.view==='tablero'){
             return(this.renderTab())
         }
     }

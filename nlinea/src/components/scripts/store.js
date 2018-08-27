@@ -15,7 +15,7 @@ let default_state = {
         level: 1,
         color: "red"
     },
-    view: 'main',
+    view: 'partidas',
     tablero:[]
 };
 
@@ -56,25 +56,14 @@ const selector = (state, action) => {
         }
     }
 
-    else if(action.type === "LOGIN"){
+    else if(action.type === "CAMBIAR_VISTA"){
         return{
             ...state,
-            view: 'login'
+            view: action.view
         }
     }
 
-    else if(action.type === 'PERFIL'){
-        return{
-            ...state,
-            view: 'perfil'
-        }
-    }
-    else if(action.type === 'TABLERO'){
-        return{
-            ...state,
-            view: 'tablero'
-        }
-    }
+
 
 
 

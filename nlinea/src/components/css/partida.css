@@ -1,0 +1,12 @@
+.partida{
+    font-size: medium;
+    background-color: darkslategrey;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+label{
+    margin-left: 5%;
+    margin-right: 5%;
+}
