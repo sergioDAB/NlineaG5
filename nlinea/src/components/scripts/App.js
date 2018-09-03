@@ -24,9 +24,13 @@ class App extends Component {
 
 
     renderView(){
-        console.log("nadie me quiere");
-        if(this.state.view==='parametros')
+        if(this.state.view==='parametros'){
             return   <Tablero/> ;
+        }
+        else if(this.state.view==='tablero'){
+            return   <Tablero/> ;
+        }
+
         else if(this.state.view==='partidas')
             return <Partidas/>
 

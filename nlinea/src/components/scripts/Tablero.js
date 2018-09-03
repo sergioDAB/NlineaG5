@@ -50,8 +50,8 @@ class Tablero extends Component {
                     level2: store.getState().userData2.level,
                     color2: store.getState().userData2.color
                 },
-                tablero:store.getState().tablero,
-                view: store.getState().view
+                tablero:store.getState().tablero
+                //view: store.getState().view
             });
         })
     }
@@ -120,25 +120,31 @@ class Tablero extends Component {
     }
 
 
-    maketableroAPI(size,nlinea,color1,color2){
+    maketableroAPI(size,nlinea,color1,color2) {
         let url = 'http://localhost:3001/config';
-        let data = {"size": size, "nlinea": nlinea, "color1":color1, "color2": color2};
+        let data = {"size": size, "nlinea": nlinea, "color1": color1, "color2": color2};
 
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
             cors: 'disabled',
             credentials: 'same-origin',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
-            .then(response => this.setState({
-                tablero:response.tablero,
-                view: 'tablero'
-            }))
+            .then(response => this.cambiarVista(response));
     }
+
+    cambiarVista(res){
+        this.setState({
+            tablero: res.tablero,
+            view: 'tablero'
+        });
+
+    }
+
 
     maketablero() {
         this.maketableroAPI(this.filas.current.value,this.linea.current.value,this.color1.current.value,this.color2.current.value); // crea el tablero en el api
@@ -157,6 +163,7 @@ class Tablero extends Component {
                 color: this.color2.current.value
             }
         });
+
     }
 // vista que muestra el tablero
     renderTab(){

@@ -12,11 +12,6 @@ class Partida extends Component {
             solicitada: false,
             aceptada:false
         };
-        store.subscribe(()=>{
-            this.setState({
-                view:store.getState().view
-            })
-        })
     }
 
     goParametros(){
