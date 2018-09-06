@@ -23,7 +23,7 @@ const selector = (state, action) => {
     if(action.type === "CAMBIAR_TURNO"){
         return{
             ...state,
-            turno: state.turno === 1 ? 0 : 1,
+            turno: action.turno === 1 ? 0 : 1,
             tablero:action.tablero
         }
     }
@@ -33,13 +33,9 @@ const selector = (state, action) => {
             size: action.size,
             nline: action.nline,
             userData1: {
-                nickname: action.userData1.nickname,
-                level: action.userData1.level,
                 color: action.userData1.color
             },
             userData2: {
-                nickname: action.userData2.nickname,
-                level: action.userData2.level,
                 color: action.userData2.color
             },
             tablero:action.tablero

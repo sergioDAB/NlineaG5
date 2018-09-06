@@ -30,7 +30,7 @@ class Partida extends Component {
             <label>creador:   {this.props.creador}</label>
             <label>size:  {this.props.size}</label>
             <label>nlinea:  {this.props.nlinea}</label>
-            <button onClick={this.goParametros}>Unirme</button>
+            <button onClick={this.goParametros} className='button_unirme'>Unirme</button>
 
         </div>
 

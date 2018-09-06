@@ -24,14 +24,12 @@ class Tablero extends Component {
             view: 'parametros', // parametros  tablero
             tablero: ["hola"]
         };
-        this.nick1 = React.createRef();
-        this.categoria1 = React.createRef();
         this.color1=React.createRef();
-        this.nick2 = React.createRef();
-        this.categoria2 = React.createRef();
+
         this.color2=React.createRef();
         this.linea = React.createRef();
         this.filas = React.createRef();
+        this.dificultad = React.createRef();
 
         this.maketablero = this.maketablero.bind(this);
         this.renderRows=this.renderRows.bind(this);
@@ -41,13 +39,9 @@ class Tablero extends Component {
                 size: store.getState().size,
                 linea: store.getState().nlinea,
                 userData1: {
-                    nickname1: store.getState().userData1.nickname,
-                    level1: store.getState().userData1.level,
                     color1: store.getState().userData1.color
                 },
                 userData2: {
-                    nickname2: store.getState().userData2.nickname,
-                    level2: store.getState().userData2.level,
                     color2: store.getState().userData2.color
                 },
                 tablero:store.getState().tablero
@@ -82,28 +76,14 @@ class Tablero extends Component {
         return (
             <div className="datos">
                 <br/>
+                <h2> Condiciones del juego </h2>
 
-                <div className="player1">
-                    <h2>Player 1</h2>
-                    <input id="nick1" ref={this.nick1} placeholder="nickname"/>
-                    <br/>
-                    <br/>
-                    <input  id="categoria1" ref={this.categoria1} placeholder="categoria"/>
-                    <br/>
-                    <br/>
-                    <input  id="color1" ref={this.color1} placeholder="color"/>
-                </div>
-                <div className="player2">
-                    <h2>Player 2</h2>
-                    <input id="nick2" ref={this.nick2} placeholder="nickname"/>
-                    <br/>
-                    <br/>
-                    <input  id="categoria2" ref={this.categoria2} placeholder="categoria"/>
-                    <br/>
-                    <br/>
-                    <input  id="color2" ref={this.color2} placeholder="color"/>
-                </div>
-
+                <br/>
+                <br/>
+                <input  id="color1" ref={this.color1} placeholder="Tu color"/>
+                <br/>
+                <br/>
+                <input  id="color2" ref={this.color2} placeholder="Pc color"/>
                 <br/>
                 <br/>
                 <input id="linea"  ref={this.linea} placeholder="N para ganar"/>
@@ -112,8 +92,15 @@ class Tablero extends Component {
                 <input id="filas" ref={this.filas} placeholder=" Dimensiones"/>
                 <br/>
                 <br/>
-                <button onClick={this.maketablero}> make</button>
+                <select id="dificultad" ref={this.dificultad}>
+                    <option value="facil">Facil</option>
+                    <option value="medio">Medio</option>
+                    <option value="dificil">Dificil</option>
+                </select>
                 <br/>
+                <br/>
+                <button onClick={this.maketablero}> Iniciar el juego</button>
+                <br/><br/>
             </div>
 
         );
@@ -153,13 +140,9 @@ class Tablero extends Component {
             size: this.filas.current.value,
             nlinea: this.linea.current.value,
             userData1: {
-                nickname: this.nick1.current.value,
-                level: this.categoria1.current.value,
                 color: this.color1.current.value
             },
             userData2 :{
-                nickname: this.nick2.current.value,
-                level: this.categoria2.current.value,
                 color: this.color2.current.value
             }
         });

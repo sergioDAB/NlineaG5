@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import Tablero from "./Tablero";
 import Partidas from "./MenuPartidas";
+import Login from './login';
+import Home from './Home';
+import firebase from 'firebase';
 
 import '../css/App.css';
 
@@ -12,7 +15,8 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state={
-            view:'partidas'
+            view: 'login',//'partidas',
+            user:null
         };
 
         store.subscribe(()=>{
@@ -21,19 +25,52 @@ class App extends Component {
             })
         })
     }
+    componentWillMount(){
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                this.setState({
+                    user:user,
+                    view : 'partidas'
+                })
+            }else{
+                this.setState({
+                    user:null,
+                    view:'login'
+                })
+            }
+        })
+    }
+
+    handleAuth(){
+        const provider= new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider)
+            .then(result => console.log("ha iniciado sesion"+ result))
+            .catch(error => console.error(error));
 
 
-    renderView(){
-        if(this.state.view==='parametros'){
-            return   <Tablero/> ;
+    }
+
+    handleLogout(){
+        firebase.auth().signOut()
+            .then(() => console.log("ha salido con exito"))
+            .catch(err  => console.error(err))
+    }
+
+
+    renderView() {
+        if (this.state.view === 'parametros') {
+            return <Tablero/>;
         }
-        else if(this.state.view==='tablero'){
-            return   <Tablero/> ;
+        else if (this.state.view === 'tablero') {
+            return <Tablero/>;
         }
 
-        else if(this.state.view==='partidas')
+        else if (this.state.view === 'partidas') {
             return <Partidas/>
-
+        }
+        else if (this.state.view === 'login') {
+            return <Home/>
+        }
 
     }
 
@@ -42,7 +79,13 @@ class App extends Component {
         return <div className="App">
 
             <header className="App-header">
-                <h1 className="App-title">Bienvenido a N en linea</h1>
+                <Login
+                    appName='Bienvenido a N en Linea'
+                    user = {this.state.user}
+                    onAuth={this.handleAuth.bind(this)}
+                    onLogout={this.handleLogout.bind(this)}
+                />
+
 
             </header>
             {this.renderView()}
