@@ -16,7 +16,8 @@ let default_state = {
         color: "red"
     },
     view: 'partidas',
-    tablero:[]
+    tablero:[],
+    partidas:[]
 };
 
 const selector = (state, action) => {
@@ -41,14 +42,13 @@ const selector = (state, action) => {
             tablero:action.tablero
         }
     }
-    else if(action.type ===  "MODIFICAR_PERFIL"){
+    else if(action.type ===  "NUEVA_PARTIDA"){
+
+        console.log("el store es:"+ action.partidas);
         return{
             ...state,
-            userData: {
-                nickname: action.userData.nickname,
-                level: action.userData.level,
-                color: action.userData.color
-            }
+            partidas:action.partidas,
+            view: action.view
         }
     }
 
@@ -58,10 +58,6 @@ const selector = (state, action) => {
             view: action.view
         }
     }
-
-
-
-
 
 };
 

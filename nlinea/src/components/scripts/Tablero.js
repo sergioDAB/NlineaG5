@@ -80,10 +80,12 @@ class Tablero extends Component {
 
                 <br/>
                 <br/>
-                <input  id="color1" ref={this.color1} placeholder="Tu color"/>
+                <label>Tu color</label>
+                <input type="color" id="color1" ref={this.color1} defaultValue ="#33FF33"/>
                 <br/>
                 <br/>
-                <input  id="color2" ref={this.color2} placeholder="Pc color"/>
+                <label>PC color</label>
+                <input  type="color" id="color2" ref={this.color2} defaultValue="#ff0000"/>
                 <br/>
                 <br/>
                 <input id="linea"  ref={this.linea} placeholder="N para ganar"/>
