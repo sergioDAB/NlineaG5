@@ -56,7 +56,7 @@ class Partidas extends Component {
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(response => store.dispatch({
-                type:"NUEVA_PARTIDA",
+                type:"CAMBIAR_VISTA",
                 partidas: response.partidas,
                 view: 'partidas'
             }));

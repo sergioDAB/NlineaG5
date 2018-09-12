@@ -1,14 +1,58 @@
 import React, { Component } from 'react';
-
 import Tablero from "./Tablero";
 import Partidas from "./MenuPartidas";
 import Login from './login';
 import Home from './Home';
 import firebase from 'firebase';
-
 import '../css/App.css';
-
 import store from "./store.js";
+
+//import io from 'socket.io';
+
+//var socket= io.conn('http://localhost:3001',{'forceNew':true});
+
+const wsUri= "ws://localhost:3002";
+let websocket= new WebSocket(wsUri);
+init();
+
+function init(){
+    testWebSocket();
+}
+
+
+function testWebSocket() {
+    websocket.onopen= onOpen;
+    websocket.onclose=onClose;
+    websocket.onmessage=onMessage;
+
+    websocket.onerror=onError;
+}
+
+function onOpen(evt) {
+    console.log("CONECTADO");
+    doSend("web socket funciona");
+}
+
+function onClose(evt) {
+    console.log("desconectado");
+    websocket.close();
+}
+
+function onMessage(evt) {
+    console.log("mensaje: "+evt.data);
+    //websocket.close();
+}
+
+function onError(evt) {
+    console.log("error: "+evt.data);
+}
+
+function doSend(message) {
+    console.log("enviado: "+message);
+    websocket.send(message);
+}
+
+
 
 class App extends Component {
 
@@ -23,8 +67,32 @@ class App extends Component {
             this.setState({
                 view:store.getState().view
             })
-        })
+        });
+
+        this.obtenerVistaActual= this.obtenerVistaActual.bind(this);
     }
+
+
+    obtenerVistaActual(){
+        let url = 'http://localhost:3001/view';
+        let data = {"usuario":'sergio'};
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            cors: 'disabled',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => store.dispatch({
+                type:"CAMBIAR_VISTA",
+                view: response.view
+            }));
+    }
+
     componentWillMount(){
         firebase.auth().onAuthStateChanged(user => {
             if(user){
@@ -90,6 +158,8 @@ class App extends Component {
             </header>
             {this.renderView()}
 
+            <button onClick={onOpen}>Enviar mensaje</button> // manda un mensaje
+
         </div>
 
     }
@@ -99,4 +169,3 @@ class App extends Component {
 export default App;
 
 
-//<Route exact path='/' component={Tablero} />
