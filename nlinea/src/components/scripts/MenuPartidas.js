@@ -4,6 +4,8 @@ import Partida from './Partida';
 import '../css/partida.css';
 import store from "./store";
 
+let partidas=[{"size": 5, "nlinea":4, "categoria": "dificil", "creador": "carlos"}];
+
 
 class Partidas extends Component {
 
@@ -27,6 +29,7 @@ class Partidas extends Component {
                 partidas: store.getState().partidas
             });
         });
+
     }
 
     goParametros(){
@@ -55,11 +58,16 @@ class Partidas extends Component {
             }
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
-            .then(response => store.dispatch({
-                type:"CAMBIAR_VISTA",
-                partidas: response.partidas,
-                view: 'partidas'
-            }));
+            .then(function (response) {
+                console.log("tablero: ", response.partidas);
+                partidas=response.partidas;
+                console.log("partidas: ", partidas);
+                store.dispatch({
+                    type: 'NUEVA_PARTIDA',
+                    partidas:partidas,
+                    view:'partidas'
+                })
+            })
     }
 
 
@@ -95,9 +103,11 @@ class Partidas extends Component {
 // en esta funcion es donde se le debe dar el valor a cada una de las partidas
 
     renderPartida() {
-        let n=this.state.partidas.length;
-        let p=this.state.partidas;
-        console.log("partida"+ this.state.partidas);
+        let p=partidas;
+        console.log("p:"+p);
+        let n=p.length;
+
+        console.log("partida"+ partidas);
         let rows = [];
         for (let i = 0; i < n; i++) {
             rows.push(<Partida creador={p[i].creador} size={p[i].size} nlinea={p[i].nlinea} categoria={p[i].categoria}/>)

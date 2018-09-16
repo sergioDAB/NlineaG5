@@ -7,29 +7,19 @@ import firebase from 'firebase';
 import '../css/App.css';
 import store from "./store.js";
 
-//import io from 'socket.io';
-
-//var socket= io.conn('http://localhost:3001',{'forceNew':true});
-
 const wsUri= "ws://localhost:3002";
 let websocket= new WebSocket(wsUri);
-init();
-
-function init(){
-    testWebSocket();
-}
+//testWebSocket();
 
 
 function testWebSocket() {
     websocket.onopen= onOpen;
     websocket.onclose=onClose;
     websocket.onmessage=onMessage;
-
     websocket.onerror=onError;
 }
 
 function onOpen(evt) {
-    console.log("CONECTADO");
     doSend("web socket funciona");
 }
 
@@ -53,7 +43,6 @@ function doSend(message) {
 }
 
 
-
 class App extends Component {
 
     constructor(props){
@@ -68,29 +57,6 @@ class App extends Component {
                 view:store.getState().view
             })
         });
-
-        this.obtenerVistaActual= this.obtenerVistaActual.bind(this);
-    }
-
-
-    obtenerVistaActual(){
-        let url = 'http://localhost:3001/view';
-        let data = {"usuario":'sergio'};
-
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            cors: 'disabled',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            .catch(error => console.error('Error:', error))
-            .then(response => store.dispatch({
-                type:"CAMBIAR_VISTA",
-                view: response.view
-            }));
     }
 
     componentWillMount(){
@@ -158,12 +124,11 @@ class App extends Component {
             </header>
             {this.renderView()}
 
-            <button onClick={onOpen}>Enviar mensaje</button> // manda un mensaje
+
 
         </div>
 
     }
-
 }
 
 export default App;
