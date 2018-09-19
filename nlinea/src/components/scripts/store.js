@@ -4,7 +4,7 @@ import '../css/params.css';
 let default_state = {
     size: 4,
     turno: -1,
-    nline: 4,
+    nlinea: 4,
     userData1: {
         nickname: "player1",
         level: 1,
@@ -25,14 +25,21 @@ const selector = (state, action) => {
         return{
             ...state,
             turno: action.turno === 1 ? 0 : 1,
-            tablero:action.tablero
+            tablero:action.tablero,
+            userData1:{
+                color:action.color1
+            },
+            userData2:{
+                color:action.color2
+            },
+            nlinea:action.nlinea
         }
     }
     else if(action.type === "CONFIGURAR"){
         return{
             ...state,
             size: action.size,
-            nline: action.nline,
+            nlinea: action.nlinea,
             userData1: {
                 color: action.userData1.color
             },
@@ -43,8 +50,6 @@ const selector = (state, action) => {
         }
     }
     else if(action.type ===  "NUEVA_PARTIDA"){
-
-        console.log("el store es:"+ action.partidas);
         return{
             ...state,
             partidas:action.partidas,
@@ -56,6 +61,21 @@ const selector = (state, action) => {
         return{
             ...state,
             view: action.view
+        }
+    }
+    else if(action.type === "HACER_TABLERO"){
+        console.log("colores "+ action.color1+ "  "+action.color2);
+        return{
+            ...state,
+            tablero:action.tablero,
+            view: action.view,
+            userData1:{
+                color:action.color1
+            },
+            userData2:{
+                color:action.color2
+            },
+            nlinea:action.nlinea
         }
     }
 

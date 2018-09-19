@@ -1,46 +1,12 @@
 import React, { Component } from 'react';
 import Tablero from "./Tablero";
 import Partidas from "./MenuPartidas";
-import Login from './login';
+//import Login from './login';
 import Home from './Home';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 import '../css/App.css';
 import store from "./store.js";
 
-const wsUri= "ws://localhost:3002";
-let websocket= new WebSocket(wsUri);
-//testWebSocket();
-
-
-function testWebSocket() {
-    websocket.onopen= onOpen;
-    websocket.onclose=onClose;
-    websocket.onmessage=onMessage;
-    websocket.onerror=onError;
-}
-
-function onOpen(evt) {
-    doSend("web socket funciona");
-}
-
-function onClose(evt) {
-    console.log("desconectado");
-    websocket.close();
-}
-
-function onMessage(evt) {
-    console.log("mensaje: "+evt.data);
-    //websocket.close();
-}
-
-function onError(evt) {
-    console.log("error: "+evt.data);
-}
-
-function doSend(message) {
-    console.log("enviado: "+message);
-    websocket.send(message);
-}
 
 
 class App extends Component {
@@ -48,7 +14,7 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state={
-            view: 'login',//'partidas',
+            view: "partidas",//'login',//'partidas',
             user:null
         };
 
@@ -58,7 +24,7 @@ class App extends Component {
             })
         });
     }
-
+/*
     componentWillMount(){
         firebase.auth().onAuthStateChanged(user => {
             if(user){
@@ -89,7 +55,7 @@ class App extends Component {
             .then(() => console.log("ha salido con exito"))
             .catch(err  => console.error(err))
     }
-
+*/
 
     renderView() {
         if (this.state.view === 'parametros') {
@@ -108,17 +74,20 @@ class App extends Component {
 
     }
 
+    goInicio(){
+        store.dispatch({
+            type: "CAMBIAR_VISTA",
+            view : 'partidas'
+        })
+    }
+
     render() {
 
         return <div className="App">
 
             <header className="App-header">
-                <Login
-                    appName='Bienvenido a N en Linea'
-                    user = {this.state.user}
-                    onAuth={this.handleAuth.bind(this)}
-                    onLogout={this.handleLogout.bind(this)}
-                />
+                {/*login*/}
+                <button onClick={this.goInicio}> Inicio</button>
 
 
             </header>
@@ -133,4 +102,9 @@ class App extends Component {
 
 export default App;
 
-
+/*<Login
+                    appName='Bienvenido a N en Linea'
+                    user = {this.state.user}
+                    onAuth={this.handleAuth.bind(this)}
+                    onLogout={this.handleLogout.bind(this)}
+                />*/

@@ -25,7 +25,7 @@ class Partida extends Component {
 
     render() {
 
-        return <div className="partida">
+        return <div className="partida" key={this.props.categoria+this.props.creador}>
 
             <label>creador:   {this.props.creador}</label>
             <label>size:  {this.props.size}</label>

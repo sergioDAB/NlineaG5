@@ -25,7 +25,8 @@ class Ficha extends Component {
                 level: store.getState().userData2.level,
                 color: store.getState().userData2.color
             },
-            tablero:store.getState().tablero
+            tablero:store.getState().tablero,
+            nlinea:store.getState().nlinea
         };
 
         store.subscribe(()=>{
@@ -42,7 +43,8 @@ class Ficha extends Component {
                     level: store.getState().userData2.level,
                     color: store.getState().userData2.color
                 },
-                tablero: store.getState().tablero
+                tablero: store.getState().tablero,
+                nlinea:store.getState().nlinea
             });
         })
 
@@ -53,9 +55,9 @@ class Ficha extends Component {
         return t;
     }
 
-    moverFichaAPI(fila,columna,turno){
+    moverFichaAPI(fila,columna,tablero,turno,color1,color2,nlinea){
         let url = 'http://localhost:3001/game';
-        let data = {"fila": fila, "columna":columna, "turno":turno};
+        let data = {"fila": fila, "columna":columna,"tablero":tablero, "turno":turno,"color1":color1, "color2":color2,"nlinea":nlinea};
 
         fetch(url, {
             method: 'POST',
@@ -69,13 +71,22 @@ class Ficha extends Component {
             .then(response =>store.dispatch({ // cambia el store
                 type: "CAMBIAR_TURNO",
                 turno: response.turno,
-                tablero:response.tablero
+                tablero:response.tablero,
+                color1: response.color1,
+                color2:response.color2,
+                nlinea:response.nlinea
             }) )
 
     }
 
     onClick(){
-        this.moverFichaAPI(this.props.fila,this.props.columna,store.getState().turno);
+        this.moverFichaAPI(this.props.fila,
+            this.props.columna,
+            store.getState().tablero,
+            store.getState().turno,
+            store.getState().userData1.color,
+            store.getState().userData2.color,
+            store.getState().nlinea);
 
     }
 

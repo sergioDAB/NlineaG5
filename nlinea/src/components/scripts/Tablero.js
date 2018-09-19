@@ -4,6 +4,7 @@ import Ficha from './Ficha';
 import '../css/tablero.css';
 import store from "./store.js";
 
+let contJugadas=0;
 
 class Tablero extends Component {
     constructor(){
@@ -22,7 +23,8 @@ class Tablero extends Component {
             },
             linea: 4,
             view: 'parametros', // parametros  tablero
-            tablero: ["hola"]
+            tablero: ["hola"],
+            turno:0
         };
         this.color1=React.createRef();
 
@@ -44,16 +46,41 @@ class Tablero extends Component {
                 userData2: {
                     color2: store.getState().userData2.color
                 },
-                tablero:store.getState().tablero
-                //view: store.getState().view
+                tablero:store.getState().tablero,
+                turno:store.getState().turno,
+                view: store.getState().view
             });
         })
     }
 
     putFicha(fila, columna,color){
         return(
-            <Ficha fila = {fila} columna = {columna}  key = {fila.toString()+columna.toString() } color= {color}/>
+            <Ficha fila = {fila} columna = {columna}  key = {fila.toString().concat(columna.toString()) } color= {color}/>
         )
+    }
+
+    moverFichaAPIAutomatico(tab,turno,color1,color2,nlinea){
+        let url = 'http://localhost:3001/automatico';
+        let data = {"tablero": tab, "turno":turno,"color1":color1,"color2":color2, "nlinea":nlinea};
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            cors: 'disabled',
+            credentials: 'same-origin',
+            headers:{'Content-Type': 'application/json'}
+
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response =>store.dispatch({ // cambia el store
+                type: "CAMBIAR_TURNO",
+                turno: response.turno,
+                tablero:response.tablero,
+                color1: response.color1,
+                color2:response.color2,
+                nlinea:response.nlinea
+            }) )
+
     }
 
 
@@ -67,7 +94,8 @@ class Tablero extends Component {
                     columns.push(this.putFicha(j, i, this.state.tablero[j][i].color))
                 }
             }
-            rows.push(<tr>{columns}</tr>);
+            let itr=Math.random();
+            rows.push(<tr key={itr}>{columns}</tr>);
         }
         return rows;
     }
@@ -111,6 +139,8 @@ class Tablero extends Component {
 
     maketableroAPI(size,nlinea,color1,color2) {
         let url = 'http://localhost:3001/config';
+        let id=Math.random();
+        console.log("id:"+id);
         let data = {"size": size, "nlinea": nlinea, "color1": color1, "color2": color2};
 
         fetch(url, {
@@ -123,15 +153,14 @@ class Tablero extends Component {
             }
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
-            .then(response => this.cambiarVista(response));
-    }
-
-    cambiarVista(res){
-        this.setState({
-            tablero: res.tablero,
-            view: 'tablero'
-        });
-
+            .then(response => store.dispatch({
+                type:"HACER_TABLERO",
+                tablero: response.tablero,
+                view:'tablero',
+                color1: response.color1,
+                color2:response.color2,
+                nlinea:response.nlinea
+            }));
     }
 
 
@@ -152,13 +181,26 @@ class Tablero extends Component {
     }
 // vista que muestra el tablero
     renderTab(){
+        if(this.state.turno===1){
+            if(contJugadas===0){
+                console.log("juega la pc");
+                contJugadas+=1;
+                this.moverFichaAPIAutomatico(this.state.tablero,this.state.turno,this.state.userData1.color1,this.state.userData2.color2,this.state.linea);
+
+            }
+
+
+        }else{
+            contJugadas=0;
+        }
         return(
             <table className="tableroTable">
                 <tbody>
                 {this.renderRows(this.state.size)}
                 </tbody>
             </table>
-        )
+        );
+
     }
 
 // define cual componente renderizar
