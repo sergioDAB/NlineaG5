@@ -24,16 +24,19 @@ class Tablero extends Component {
             linea: 4,
             view: 'parametros', // parametros  tablero
             tablero: ["hola"],
-            turno:0
+            turno:0,
+            level:"facil",
+            win: false,
+
         };
         this.color1=React.createRef();
-
         this.color2=React.createRef();
         this.linea = React.createRef();
         this.filas = React.createRef();
         this.dificultad = React.createRef();
 
         this.maketablero = this.maketablero.bind(this);
+        this.makeRevancha= this.makeRevancha.bind(this);
         this.renderRows=this.renderRows.bind(this);
 
         store.subscribe(()=>{
@@ -48,7 +51,9 @@ class Tablero extends Component {
                 },
                 tablero:store.getState().tablero,
                 turno:store.getState().turno,
-                view: store.getState().view
+                view: store.getState().view,
+                level:store.getState().level,
+                win:store.getState().win
             });
         })
     }
@@ -59,9 +64,9 @@ class Tablero extends Component {
         )
     }
 
-    moverFichaAPIAutomatico(tab,turno,color1,color2,nlinea){
+    moverFichaAPIAutomatico(tab,turno,color1,color2,nlinea,level){
         let url = 'http://localhost:3001/automatico';
-        let data = {"tablero": tab, "turno":turno,"color1":color1,"color2":color2, "nlinea":nlinea};
+        let data = {"tablero": tab, "turno":turno,"color1":color1,"color2":color2, "nlinea":nlinea, "level":level};
 
         fetch(url, {
             method: 'POST',
@@ -78,7 +83,8 @@ class Tablero extends Component {
                 tablero:response.tablero,
                 color1: response.color1,
                 color2:response.color2,
-                nlinea:response.nlinea
+                nlinea:response.nlinea,
+                win:response.win
             }) )
 
     }
@@ -129,7 +135,7 @@ class Tablero extends Component {
                 </select>
                 <br/>
                 <br/>
-                <button onClick={this.maketablero}> Iniciar el juego</button>
+                <button className='button_pc' onClick={this.maketablero}> Iniciar el juego</button>
                 <br/><br/>
             </div>
 
@@ -137,11 +143,9 @@ class Tablero extends Component {
     }
 
 
-    maketableroAPI(size,nlinea,color1,color2) {
+    maketableroAPI(size,nlinea,color1,color2,level) {
         let url = 'http://localhost:3001/config';
-        let id=Math.random();
-        console.log("id:"+id);
-        let data = {"size": size, "nlinea": nlinea, "color1": color1, "color2": color2};
+        let data = {"size": size, "nlinea": nlinea, "color1": color1, "color2": color2,"level":level};
 
         fetch(url, {
             method: 'POST',
@@ -159,13 +163,20 @@ class Tablero extends Component {
                 view:'tablero',
                 color1: response.color1,
                 color2:response.color2,
-                nlinea:response.nlinea
+                nlinea:response.nlinea,
+                level: response.level,
+                win:false
             }));
+
     }
 
 
     maketablero() {
-        this.maketableroAPI(this.filas.current.value,this.linea.current.value,this.color1.current.value,this.color2.current.value); // crea el tablero en el api
+        this.maketableroAPI(this.filas.current.value,
+            this.linea.current.value,
+            this.color1.current.value,
+            this.color2.current.value,
+            this.dificultad.current.value); // crea el tablero en el api
         store.dispatch({
             type: "CONFIGURAR",
             size: this.filas.current.value,
@@ -177,29 +188,63 @@ class Tablero extends Component {
                 color: this.color2.current.value
             }
         });
+    }
 
+    // revancha con las mismas condiciones de juego contra la computadora
+
+    makeRevancha() {
+        this.maketableroAPI(this.state.size,
+            this.state.linea,
+            this.state.userData1.color1,
+            this.state.userData2.color2,
+            this.state.level); // crea el tablero en el api
     }
 // vista que muestra el tablero
     renderTab(){
-        if(this.state.turno===1){
-            if(contJugadas===0){
-                console.log("juega la pc");
-                contJugadas+=1;
-                this.moverFichaAPIAutomatico(this.state.tablero,this.state.turno,this.state.userData1.color1,this.state.userData2.color2,this.state.linea);
 
+        if(!this.state.win){
+            if(this.state.turno===1){
+                if(contJugadas===0){
+                    console.log("juega la pc");
+                    contJugadas+=1;
+                    this.moverFichaAPIAutomatico(
+                        this.state.tablero,
+                        this.state.turno,
+                        this.state.userData1.color1,
+                        this.state.userData2.color2,
+                        this.state.linea,
+                        this.state.level);
+                }
+            }else{
+                contJugadas=0;
             }
-
+            return(
+                <table className="tableroTable">
+                    <tbody>
+                    {this.renderRows(this.state.size)}
+                    </tbody>
+                </table>
+            );
 
         }else{
-            contJugadas=0;
+            return(
+                <div>
+                    <div>
+                        <h3> Felicitaciones !!! </h3>
+                        <button className='button_unirme' onClick={this.makeRevancha}> Revancha </button>
+                        <button className='button_pc'> Volver al inicio</button>
+                        <br/>
+                        <br/>
+                    </div>
+                    <table className="tableroTable">
+                        <tbody>
+                        {this.renderRows(this.state.size)}
+                        </tbody>
+                    </table>
+                </div>
+
+            );
         }
-        return(
-            <table className="tableroTable">
-                <tbody>
-                {this.renderRows(this.state.size)}
-                </tbody>
-            </table>
-        );
 
     }
 

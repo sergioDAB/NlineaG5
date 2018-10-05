@@ -87,7 +87,7 @@ class App extends Component {
 
             <header className="App-header">
                 {/*login*/}
-                <button onClick={this.goInicio}> Inicio</button>
+                <h2 onClick={this.goInicio}> N en linea</h2>
 
 
             </header>

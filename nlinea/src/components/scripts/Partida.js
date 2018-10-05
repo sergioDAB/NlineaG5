@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import "../css/partida.css";
 import store from "./store";
+
 class Partida extends Component {
     constructor(props){
         super(props);
@@ -12,13 +13,13 @@ class Partida extends Component {
             solicitada: false,
             aceptada:false
         };
+
     }
 
     goParametros(){
-        console.log("el boton fue presionado");
         store.dispatch({
             type: "CAMBIAR_VISTA",
-            view: 'parametros'
+            view: 'tablero'
         })
     }
 

@@ -17,7 +17,9 @@ let default_state = {
     },
     view: 'partidas',
     tablero:[],
-    partidas:[]
+    partidas:[],
+    level:"facil",
+    win:false
 };
 
 const selector = (state, action) => {
@@ -32,7 +34,8 @@ const selector = (state, action) => {
             userData2:{
                 color:action.color2
             },
-            nlinea:action.nlinea
+            nlinea:action.nlinea,
+            win:action.win
         }
     }
     else if(action.type === "CONFIGURAR"){
@@ -75,9 +78,12 @@ const selector = (state, action) => {
             userData2:{
                 color:action.color2
             },
-            nlinea:action.nlinea
+            nlinea:action.nlinea,
+            level:action.level,
+            win:action.win
         }
     }
+
 
 };
 

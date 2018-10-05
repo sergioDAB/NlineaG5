@@ -26,7 +26,8 @@ class Ficha extends Component {
                 color: store.getState().userData2.color
             },
             tablero:store.getState().tablero,
-            nlinea:store.getState().nlinea
+            nlinea:store.getState().nlinea,
+            win:store.getState().win
         };
 
         store.subscribe(()=>{
@@ -44,7 +45,8 @@ class Ficha extends Component {
                     color: store.getState().userData2.color
                 },
                 tablero: store.getState().tablero,
-                nlinea:store.getState().nlinea
+                nlinea:store.getState().nlinea,
+                win:store.getState().win
             });
         })
 
@@ -74,20 +76,27 @@ class Ficha extends Component {
                 tablero:response.tablero,
                 color1: response.color1,
                 color2:response.color2,
-                nlinea:response.nlinea
+                nlinea:response.nlinea,
+                win:response.win
             }) )
 
     }
 
     onClick(){
-        this.moverFichaAPI(this.props.fila,
-            this.props.columna,
-            store.getState().tablero,
-            store.getState().turno,
-            store.getState().userData1.color,
-            store.getState().userData2.color,
-            store.getState().nlinea);
+        console.log(" me presionaron: ", this.state.win);
+        if(this.state.win=== true){
+            // no hace ninguna accion luego de que haya un ganador
+            alert("no sea necio -.-");
 
+        }else{
+            this.moverFichaAPI(this.props.fila,
+                this.props.columna,
+                store.getState().tablero,
+                store.getState().turno,
+                store.getState().userData1.color,
+                store.getState().userData2.color,
+                store.getState().nlinea);
+        }
     }
 
 

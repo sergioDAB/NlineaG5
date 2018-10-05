@@ -7,10 +7,15 @@ import websocket from '../Sockets/webSocket';
 
 let partidas=[{"size": 5, "nlinea":4, "categoria": "dificil", "creador": "carlos"}];
 
+let actualizar;
+
 
 //funcionamiento de los sockets
 websocket.onopen= solicitarPartidas;
-websocket.onmessage=solicitarPartidas;
+if(actualizar!== false){
+    websocket.onmessage=solicitarPartidas;
+}
+
 
 function doSend(message) {  // envia un mensaje al servidor de sockets
     console.log("enviado: "+message);
@@ -34,6 +39,7 @@ function solicitarPartidas() {
         .catch(error => console.error('Error:', error))
         .then(function (response) {
             partidas=response.partidas;
+            console.log("actu :"+actualizar);
             store.dispatch({
                 type: "NUEVA_PARTIDA",
                 partidas: partidas,
@@ -72,13 +78,12 @@ class Partidas extends Component {
     }
 
     goParametros(){
+        actualizar=false;
         store.dispatch({
             type: "CAMBIAR_VISTA",
             view: 'parametros'
         });
 
-        //doSend("pc"); // envia al servidor de sockets un mensjae que sea identificado como una nueva partida contra
-                        // la pc, de modo que se cree un nuevo tablero asociado a esa conexion
     }
 
 
@@ -103,7 +108,6 @@ class Partidas extends Component {
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(function (response) {
-                console.log("tablero: ", response.partidas);
                 partidas=response.partidas;
                 console.log("partidas: ", partidas);
                 store.dispatch({
